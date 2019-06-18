@@ -1,5 +1,5 @@
-const sendError = (res, message = null) => {
-  res.status(500).json({
+const sendError = (res, message = null, code = 500) => {
+  res.status(code).json({
     message
   })
 }

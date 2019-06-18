@@ -4,7 +4,7 @@ const { sendError, sendSuccess } = require('./index-utils')
 const create = (req, res) => {
   const description = req.body.description || null
   if (!description) {
-    sendError(res, '"description" must be set')
+    sendError(res, '"description" must be set', 400)
     return
   }
 
@@ -21,13 +21,13 @@ const create = (req, res) => {
 const readByUUID = (req, res) => {
   const uuid = req.params.uuid || null
   if (!uuid) {
-    sendError(res, '"uuid" must be set')
+    sendError(res, '"uuid" must be set', 400)
     return
   }
 
   TodoModel.findById(uuid, (err, todo) => {
     if (err) {
-      sendError(res, 'Todo not found')
+      sendError(res, 'Todo not found', 404)
       return
     }
     sendSuccess(res, todo)
@@ -47,23 +47,27 @@ const readAll = (req, res) => {
 const updateByUUID = (req, res) => {
   const uuid = req.params.uuid || null
   if (!uuid) {
-    sendError(res, '"uuid" must be set')
+    sendError(res, '"uuid" must be set', 400)
     return
   }
-
   const description = req.body.description || null
   if (!description) {
-    sendError(res, '"description" must be set')
+    sendError(res, '"description" must be set',  400)
+    return
+  }
+  const done = req.body.done || null
+  if (!done) {
+    sendError(res, '"done" must be set', 400)
     return
   }
 
   TodoModel.findOneAndUpdate(
     { _id: uuid },
-    { description },
+    { description, done },
     { useFindAndModify: false },
     (err, task) => {
       if (err || !task) {
-        sendError(res, 'Todo error')
+        sendError(res, 'Todo not found', 404)
         return
       }
 
@@ -75,13 +79,13 @@ const updateByUUID = (req, res) => {
 const deleteByUUID = (req, res) => {
   const uuid = req.params.uuid || null
   if (!uuid) {
-    sendError(res, '"uuid" must be set')
+    sendError(res, '"uuid" must be set', 400)
     return
   }
 
   TodoModel.deleteOne({ _id: uuid }, (err, { n }) => {
     if (err || n === 0) {
-      sendError(res, 'Todo not found')
+      sendError(res, 'Todo not found', 404)
       return
     }
 
