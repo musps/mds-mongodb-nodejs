@@ -1,0 +1,20 @@
+{
+  "name": "tp-mongo-nodejs-crud",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "node -r dotenv/config ./api/index.js",
+    "dev": "node -r dotenv/config ./api/index.js",
+    "prod": "node -r dotenv/config ./api/index.js"
+  },
+  "author": "Sercan YILDIZ <ysercanz@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.0",
+    "nodemon": "^1.19.1"
+  }
+}
