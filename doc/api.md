@@ -39,7 +39,7 @@
 
 * Paramètres
 ```
-uuid = uuid de l'item crée.
+uuid = uuid de l'item créé.
 ```
 
 * Succès : code 200
