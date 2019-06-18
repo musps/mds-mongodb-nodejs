@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "docker": "docker-compose up -d",
     "run": "node -r dotenv/config ./api/index.js",
     "dev": "node -r dotenv/config ./api/index.js",
     "prod": "node -r dotenv/config ./api/index.js"
