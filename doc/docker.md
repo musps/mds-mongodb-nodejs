@@ -7,17 +7,28 @@ docker-compose up -d
 docker exec -it mongo1 mongo --port 30001
 
 rs.initiate()
-rs.add("mongo2:30002")
-rs.add("mongo3:30003")
 
 ```
 
-## Configuration bindage ip
-
+## Démmarer l'api
 ```
-# Ajouter ces lignes à votre fichier host.
-
-127.0.0.1       mongo1
-127.0.0.1       mongo2
-127.0.0.1       mongo3
+docker exec -it api npm run dev
 ```
+
+config = {
+     "_id" : "my-mongo-set",
+      "members" : [
+          {
+              "_id" : 0,
+              "host" : "mongo1:30001"
+          },
+          {
+              "_id" : 1,
+              "host" : "mongo2:30002"
+          },
+          {
+              "_id" : 2,
+              "host" : "mongo3:30003"
+          }
+      ]
+}

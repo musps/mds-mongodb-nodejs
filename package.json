@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "docker": "docker-compose up -d",
-    "run": "node -r dotenv/config ./api/index.js",
-    "dev": "node -r dotenv/config ./api/index.js",
-    "prod": "node -r dotenv/config ./api/index.js",
-    "test": "jest --detectOpenHandles --forceExit"
+    "docker-init": "docker exec -it mongo1 mongo --port 30001",
+    "run": "node ./api/index.js",
+    "dev": "node ./api/index.js",
+    "prod": "node ./api/index.js",
+    "test": "jest --detectOpenHandles --forceExit",
+    "run-docker": "docker exec -it api npm run dev"
   },
   "author": "Sercan YILDIZ <ysercanz@gmail.com>",
   "license": "ISC",
@@ -16,8 +18,7 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.6.0",
-    "nodemon": "^1.19.1"
+    "mongoose": "^5.6.0"
   },
   "devDependencies": {
     "jest": "^24.8.0",

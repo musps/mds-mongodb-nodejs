@@ -1,10 +1,12 @@
 version: '3.1'
-
 services:
+
   mongo1:
     container_name: mongo1
     image: mongo
-    command: "mongod --port 30001 --replSet my-mongo-set"
+    volumes:
+      - ./docker:/data/vhosts/api/docker
+    command: bash -c "/data/vhosts/api/docker/init.sh"
     ports:
       - 30001:30001
     networks:
@@ -13,7 +15,7 @@ services:
   mongo2:
     container_name: mongo2
     image: mongo
-    command: "mongod --port 30002 --replSet my-mongo-set"
+    command: "mongod --port 30002 --replSet my-mongo-set --bind_ip_all"
     ports:
       - 30002:30002
     networks:
@@ -22,7 +24,7 @@ services:
   mongo3:
     container_name: mongo3
     image: mongo
-    command: "mongod --port 30003 --replSet my-mongo-set"
+    command: "mongod --port 30003 --replSet my-mongo-set --bind_ip_all"
     ports:
       - 30003:30003
     networks:
