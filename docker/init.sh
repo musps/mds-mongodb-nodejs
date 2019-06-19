@@ -1,8 +1,8 @@
 #! /bin/bash
 
-mongod --port 30001 --replSet my-mongo-set --bind_ip_all &>/dev/null &
+nohup mongod --port 30001 --replSet my-mongo-set --bind_ip_all --fork --logpath mongo.log
 
-sleep 5
+sleep 3
 
 cfg="{
     _id: 'my-mongo-set',
@@ -14,3 +14,5 @@ cfg="{
 }"
 
 mongo --port 30001 --eval "JSON.stringify(db.adminCommand({'replSetInitiate' : $cfg}))"
+
+tail -f /dev/null
