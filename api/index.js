@@ -12,7 +12,7 @@ const mongooseOptions = {
   useNewUrlParser: true
 }
 
-const PORT = process.env.API_PORT || 3000
+const PORT = 3000
 const MONGO_CONNECTION_STRING = (process.env.API_ENV === 'prod'
   ? process.env.PROD_MONGO_CONNECTION_STRING
   : process.env.DEV_MONGO_CONNECTION_STRING)

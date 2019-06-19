@@ -4,12 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker-node": "docker-compose up -d api",
-    "docker-node-db": "docker-compose up -d",
-    "run-local": "docker exec -it api /bin/bash -c 'API_ENV=dev node ./api'",
-    "run-remote": "docker exec -it api /bin/bash -c 'API_ENV=prod node ./api'",
-    "tests-local": "docker exec -it api /bin/bash -c 'API_ENV=dev  npx jest --detectOpenHandles --forceExit'",
-    "tests-remote": "docker exec -it api /bin/bash -c 'API_ENV=prod  npx jest --detectOpenHandles --forceExit'"
+    "run-local": "API_ENV=dev node ./api",
+    "run-remote": "API_ENV=prod node ./api",
+    "tests-local": "API_ENV=dev npx jest --detectOpenHandles --forceExit",
+    "tests-remote": "API_ENV=prod npx jest --detectOpenHandles --forceExit"
   },
   "author": "Sercan YILDIZ <ysercanz@gmail.com>",
   "license": "ISC",
