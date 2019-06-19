@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker": "docker-compose up -d",
-    "docker-init": "docker exec -it mongo1 mongo --port 30001",
-    "run": "node ./api/index.js",
-    "dev": "node ./api/index.js",
-    "prod": "node ./api/index.js",
-    "test": "jest --detectOpenHandles --forceExit",
-    "run-docker": "docker exec -it api npm run dev"
+    "docker-node": "docker-compose up -d api",
+    "docker-node-db": "docker-compose up -d",
+    "run-local": "docker exec -it api /bin/bash -c 'API_ENV=dev node ./api'",
+    "run-remote": "docker exec -it api /bin/bash -c 'API_ENV=prod node ./api'",
+    "tests-local": "docker exec -it api /bin/bash -c 'API_ENV=dev  npx jest --detectOpenHandles --forceExit'",
+    "tests-remote": "docker exec -it api /bin/bash -c 'API_ENV=prod  npx jest --detectOpenHandles --forceExit'"
   },
   "author": "Sercan YILDIZ <ysercanz@gmail.com>",
   "license": "ISC",

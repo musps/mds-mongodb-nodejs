@@ -1,6 +1,18 @@
 version: '3.1'
 
 services:
+  api:
+    container_name: api
+    image: node:10-slim
+    volumes:
+      - ./:/data/vhosts/api
+    working_dir: /data/vhosts/api
+    command: tail -f /dev/null
+    ports:
+      - 3000:3000
+    networks:
+      - mongo-cluster
+
   mongo1:
     container_name: mongo1
     image: mongo
