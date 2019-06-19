@@ -1,6 +1,6 @@
 # Descriptions
 
-### `GET` - `/action-todo/readAll`
+### `PUT` - `/action-todo/create`
 
 * Paramètres
 ```
@@ -26,6 +26,7 @@
     "message": null
 }
 ```
+
 * Error : code 500
 ```
 {

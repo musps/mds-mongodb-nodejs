@@ -25,6 +25,7 @@
     "message": null
 }
 ```
+
 * Error : code 500
 ```
 {

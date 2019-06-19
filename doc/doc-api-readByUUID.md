@@ -24,6 +24,7 @@ uuid = uuid de l'item créé.
     "message": null
 }
 ```
+
 * Error : code 500
 ```
 {
