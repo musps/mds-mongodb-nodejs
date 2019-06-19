@@ -1,5 +1,8 @@
 # Liste des commandes
 
+Les commandes ci-dessous sont basé sur un `MakeFile`
+Toutes ces commandes doivent être utilisé avec le prefix `make`. ex: `make ma-commande`.
+
 | Commande | Description |
 | --- | --- |
 | docker-node | Démarrer le service nodejs |

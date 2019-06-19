@@ -18,7 +18,7 @@ services:
     image: mongo
     volumes:
       - ./docker:/data/vhosts/api/docker
-    command: bash -c "/data/vhosts/api/docker/init.sh"
+    command: bash -c "/data/vhosts/api/docker/init_replica_set.sh"
     ports:
       - 30001:30001
     networks:
