@@ -1,6 +1,7 @@
 # Liste des commandes
 
 | Commande | Description |
+| --- | --- |
 | docker-node | Démarrer le service nodejs |
 | docker-node-db | Démarrer les services nodejs et mongodb |
 | install-dependencies | Installer les dépendences du projet |
