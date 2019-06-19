@@ -1,11 +1,14 @@
 docker-node:
 	docker-compose up -d api
 
-docker-node-db:
-	docker-compose up -d
+docker-db:
+	docker-compose up -d mongo1 mongo2 mongo3
 
 install-dependencies:
 	docker exec -it api npm install
+
+init-configuration:
+	mv .env-example .env
 
 run-local:
 	docker exec -it api npm run run-local
