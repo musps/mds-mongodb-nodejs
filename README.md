@@ -1,5 +1,3 @@
-
-
 ## Pré-requis
 
 * Avoir docker et docker-compose sur sa machine.
@@ -78,3 +76,19 @@ Cette commande va démarrer les services MongoDB en local.
 * Renseigner la valeur de la variable d'environnement `PROD_MONGO_CONNECTION_STRING` par celle **de l'étape 4**
 * Renseigner le mot de passe du compte crée précédemment en replacement la valeur `<password>`  par celle du mot de passe **de l'étape 2**
 * FIN !
+
+## Démarrage
+
+* Sur la base de données local
+  `make run-locale`
+
+* Sur la base de données distante
+  `make run-remote`
+
+## Tests
+
+* Sur la base de données local
+  `make tests-locale`
+
+* Sur la base de données distante
+  `make tests-remote`
