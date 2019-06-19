@@ -100,6 +100,8 @@ Cette commande va démarrer les services MongoDB en local.
 * Sur la base de données distante
   `make run-remote`
 
+* L'api est disponible sur le port. `3000`à l'adresse `localhost:3000`
+
 ## Tests
 
 * Sur la base de données local
