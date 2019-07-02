@@ -29,7 +29,7 @@ const startServer = () => {
     await mongoose
       .connect(MONGO_CONNECTION_STRING, mongooseOptions)
       .then(() => console.log('connected') || (dbConnected = true))
-      .catch(() => console.log('not connected') || (dbConnected = false))
+      .catch((e) => console.log('not connected', e) || (dbConnected = false))
 
     /**
      * START: Healthcheck bdd

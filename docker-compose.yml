@@ -1,5 +1,8 @@
 version: '3.1'
 
+networks:
+  mongo-cluster:
+
 services:
   mds-api:
     container_name: mds-api
@@ -8,18 +11,23 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/app
-    command: tail -f /dev/null
+    command: npm run run-local
     ports:
       - 3000:3000
     networks:
       - mongo-cluster
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3
 
   mongo1:
     container_name: mongo1
     image: mongo
     volumes:
-      - ./docker:/data/vhosts/api/docker
-    command: bash -c "/data/vhosts/api/docker/init_replica_set.sh"
+      - ./docker/database://docker/database
+      - ./dblog:/var/log/mongodb
+    command: bash -c "/docker/database/init_replica_set.sh"
     ports:
       - 30001:30001
     networks:
@@ -29,6 +37,8 @@ services:
     container_name: mongo2
     image: mongo
     command: "mongod --port 30002 --replSet my-mongo-set --bind_ip_all"
+    volumes:
+      - ./dblog:/var/log/mongodb
     ports:
       - 30002:30002
     networks:
@@ -38,10 +48,9 @@ services:
     container_name: mongo3
     image: mongo
     command: "mongod --port 30003 --replSet my-mongo-set --bind_ip_all"
+    volumes:
+      - ./dblog:/var/log/mongodb
     ports:
       - 30003:30003
     networks:
       - mongo-cluster
-
-networks:
-  mongo-cluster:
