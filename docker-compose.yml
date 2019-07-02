@@ -6,9 +6,10 @@ networks:
 services:
   mds-api:
     container_name: mds-api
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    #build:
+    #  context: ./
+    #  dockerfile: Dockerfile.prod
+    image: tngsy/mds-mongodb-nodejs_mds-api
     environment:
       - API_PORT=3000
       - API_ENV=prod

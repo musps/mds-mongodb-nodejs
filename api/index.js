@@ -24,26 +24,30 @@ if (!MONGO_CONNECTION_STRING) {
   process.exit(1)
 }
 
+/**
+ * START: Healthcheck bdd
+ */
+mongoose.connection.on('connected', () => console.log('connected') || (dbConnected = true))
+mongoose.connection.on('error', () => console.log('error') || (dbConnected = false))
+mongoose.connection.on('disconnected', () => console.log('disconnected') || (dbConnected = false))
+
 const startServer = () => {
   return new Promise(async (resolve, reject) => {
-    await mongoose
-      .connect(MONGO_CONNECTION_STRING, mongooseOptions)
-      .then(() => console.log('connected') || (dbConnected = true))
-      .catch((e) => console.log('not connected', e) || (dbConnected = false))
-
-    /**
-     * START: Healthcheck bdd
-     */
-    mongoose.connection.on('connected', () => console.log('connected') || (dbConnected = true))
-    mongoose.connection.on('error', () => console.log('error') || (dbConnected = false))
-    mongoose.connection.on('disconnected', () => console.log('disconnected') || (dbConnected = false))
     // If the bdd is not connected we throw an error.
-    app.use(function (req, res, next) {
+    app.use(async (req, res, next) => {
+      if (!dbConnected) {
+        await mongoose
+          .connect(MONGO_CONNECTION_STRING, mongooseOptions)
+          .then(() => console.log('connected') || (dbConnected = true))
+          .catch((e) => console.log('not connected', e) || (dbConnected = false))
+      }
+
+      if (!dbConnected) {
+         sendError(res, 'Something went wrong', 503)
+        return
+      }
       next();
     })
-    /**
-     * STOP: Healthcheck bdd
-     */
 
     app.use('/action-todo', actionsTodo)
     app.listen(API_PORT, () => console.log(`Server running at http://localhost:${API_PORT}`))
