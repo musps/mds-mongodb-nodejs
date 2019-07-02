@@ -9,15 +9,14 @@ RUN apk add --update \
     curl \
     bash \
     nodejs-current \
-    nodejs-npm \
-    git
+    nodejs-npm
 
-RUN addgroup -S app \
-    && adduser -S -D -G app app -u 2500
-
-USER app
+EXPOSE 3000
 
 WORKDIR /app
 
-CMD ["tail", "-f", "/dev/null"]
-#CMD ["npm", "run", "run-local"]
+COPY ./api /app/api
+COPY ./package*.json /app/
+
+RUN npm install
+CMD npm run start

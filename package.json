@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./api",
     "run-local": "API_ENV=dev node ./api",
     "run-remote": "API_ENV=prod node ./api",
     "tests-local": "API_ENV=dev npx jest --detectOpenHandles --forceExit",

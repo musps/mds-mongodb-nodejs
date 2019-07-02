@@ -21,7 +21,7 @@ const MONGO_CONNECTION_STRING = (process.env.API_ENV === 'prod'
   : process.env.DEV_MONGO_CONNECTION_STRING)
 
 if (!MONGO_CONNECTION_STRING) {
-  process.exit(0)
+  process.exit(1)
 }
 
 const startServer = () => {
@@ -39,10 +39,6 @@ const startServer = () => {
     mongoose.connection.on('disconnected', () => console.log('disconnected') || (dbConnected = false))
     // If the bdd is not connected we throw an error.
     app.use(function (req, res, next) {
-      if (!dbConnected) {
-         sendError(res, 'Something went wrong', 503)
-        return
-      }
       next();
     })
     /**
