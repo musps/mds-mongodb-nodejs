@@ -23,7 +23,9 @@ services:
   mongo1:
     container_name: mongo1
     image: mongo
+    working_dir: /mongo
     volumes:
+      - ./mongo_log/mongo1:/mongo
       - ./init_replica_set.sh:/db/init_replica_set.sh
     command: bash -c "/db/init_replica_set.sh"
     ports:
@@ -37,7 +39,10 @@ services:
   mongo2:
     container_name: mongo2
     image: mongo
-    command: "mongod --port 30002 --replSet my-mongo-set --bind_ip_all"
+    working_dir: /mongo
+    volumes:
+      - ./mongo_log/mongo2:/mongo
+    command: "mongod --port 30002 --replSet my-mongo-set --bind_ip_all --logpath mongo.log"
     ports:
       - 30002:30002
     networks:
@@ -46,7 +51,10 @@ services:
   mongo3:
     container_name: mongo3
     image: mongo
-    command: "mongod --port 30003 --replSet my-mongo-set --bind_ip_all"
+    working_dir: /mongo
+    volumes:
+      - ./mongo_log/mongo3:/mongo
+    command: "mongod --port 30003 --replSet my-mongo-set --bind_ip_all --logpath mongo.log"
     ports:
       - 30003:30003
     networks:
