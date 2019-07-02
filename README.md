@@ -1,3 +1,4 @@
+
 # MDS-MONGODB-NODEJS
 
 * Un projet d'api avec MongoDB et ExpressJS qui contient des tests tests unitaires et une base de données locale et distante.
@@ -5,6 +6,36 @@
 ## Pré-requis
 
 * Avoir docker et docker-compose sur sa machine.
+
+## MAJ du 02/07/2019 : Ajout de la config prod.
+
+* Création d'une image docker qui contient l'ensemble de l'api paqueté dedans.
+* Le port de l'api est `3000`
+
+L'image est disponible dans le registry docker hub sous le nom `tngsy/mds-mongodb-nodejs_mds-api`.
+
+### Démarrage
+
+Executer la commande 
+```
+docker-compose up
+```
+
+* L'api est disponible sur le port. `3000`à l'adresse `localhost:3000`
+* Les logs des instances mongo se trouvent aux dossiers `/mongo_log/xx`
+* Un mock de données à été créé lors du lancement de la commande.
+
+### Créer votre propre image docker à partir du Dockerfile :
+
+Build de l'image
+* Executer la commande : `docker build -f Dockerfile.prod .`
+
+Définition du nom de l'image
+* Executer la commande : `docker tag <image tag> <dockerhub username>/<le nom de votre paquet>:<un tag à définir>`
+
+Push de l'image local vers le registry Docker Hub.
+
+* Executer la commande : `docker push <dockerhub username>/<le nom de votre paquet>:<un tag à définir>`
 
 ## Liste des commandes
 

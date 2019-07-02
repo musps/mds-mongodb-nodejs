@@ -9,7 +9,7 @@ services:
     #build:
     #  context: ./
     #  dockerfile: Dockerfile.prod
-    image: tngsy/mds-mongodb-nodejs_mds-api
+    image: tngsy/mds-mongodb-nodejs_mds-api:latest
     environment:
       - API_PORT=3000
       - API_ENV=prod
