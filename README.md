@@ -7,14 +7,18 @@
 
 * Avoir docker et docker-compose sur sa machine.
 
-## MAJ du 02/07/2019 : Ajout de la config prod.
+## MAJ du 02/07/2019 : Ajout du Docker Déploiement
 
 * Création d'une image docker qui contient l'ensemble de l'api paqueté dedans.
 * Le port de l'api est `3000`
 
 L'image est disponible dans le registry docker hub sous le nom `tngsy/mds-mongodb-nodejs_mds-api`.
 
-### Démarrage
+### Démarrage avec un fichier docker-compose
+
+Ce fichier contient 4 services :
+- Un service pour l'api
+- 3 services pour le replica set mongo.
 
 Executer la commande 
 ```
